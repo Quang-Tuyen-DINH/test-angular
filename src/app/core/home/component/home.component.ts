@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DiscordGroup } from 'src/app/shared/models/discord-group';
+import { Infor } from 'src/app/shared/models/infor';
 import { data } from '../mockdata/data.discord';
 
 @Component({
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
     preferedLanguage: new FormControl(''),
     promocode: new FormControl(''),
   });
+  validatedForm: boolean = false;
   groupsData: DiscordGroup[] = data;
   constructor(private fb: FormBuilder) { }
 
@@ -42,11 +44,45 @@ export class HomeComponent implements OnInit {
   }
 
   storeInfos() {
-    console.log(this.subscriptionForm.value);
+    const _firstName = this.subscriptionForm.value.firstName;
+    const _lastName = this.subscriptionForm.value.lastName;
+    const _email = this.subscriptionForm.value.email;
+    const _phoneNumber = this.subscriptionForm.value.phoneNumber;
+    const _message = this.subscriptionForm.value.message;
+    const _language = this.subscriptionForm.value.preferedLanguage;
+    const _promoCode = this.subscriptionForm.value.promocode;
+
+    const object: Infor = {
+      firstName: _firstName,
+      lastName: _lastName,
+      email: _email,
+      phoneNumber: _phoneNumber,
+      message: _message,
+      language: _language,
+      promoCode: _promoCode
+    }
+
+    localStorage.setItem('Infor', JSON.stringify(object));
+  }
+
+  retrieveInfor() {
+    let retrieve: any | Infor = localStorage.getItem('Infor');
+    if(retrieve != null) {
+      this.subscriptionForm = this.fb.group({
+        firstName: new FormControl(retrieve.firstName, Validators.required),
+        lastName: new FormControl(retrieve.lastName, Validators.required),
+        email: new FormControl(retrieve.email, Validators.required),
+        phoneNumber: new FormControl(retrieve.phoneNumber, Validators.required),
+        message: new FormControl(retrieve.message, Validators.required),
+        preferedLanguage: new FormControl(retrieve.language),
+        promocode: new FormControl(retrieve.promoCode),
+      });
+    }
   }
 
   ngOnInit(): void {
     this.checkDate();
+    this.retrieveInfor();
   }
 
 }

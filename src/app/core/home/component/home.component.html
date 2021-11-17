@@ -33,11 +33,11 @@
     <label class="subForm-label">Phone Number<span class="subform-required">*</span></label>
     <input type="number" formControlName="phoneNumber" placeholder="">
     <label class="subForm-label">Message<span class="subform-required">*</span></label>
-    <textarea id="story" name="story" rows="4" placeholder="Tell us more about your expectations"></textarea>
+    <textarea rows="4" formControlName="message" placeholder="Tell us more about your expectations"></textarea>
     <label class="subForm-label">Prefered Language</label>
     <select formControlName="preferedLanguage" name="language">
-      <option value="australia">English</option>
-      <option value="canada">French</option>
+      <option value="english">English</option>
+      <option value="french">French</option>
     </select>
     <label class="subForm-label">Promo Code</label>
     <input type="text" formControlName="promocode" placeholder="">
