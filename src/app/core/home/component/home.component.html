@@ -1,3 +1,75 @@
 <div class="content">
-  <p>home works!</p>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="pentagon">
+      <p class="header-title">get in touch</p>
+      <p class="header-text">Want to start mining your own cryptocurrencies or have any questions? You're almost there!</p>
+  </div>
+</div>
+<!-- BODY -->
+<div class="body">
+  <p class="body-title">one final step...</p>
+  <div class="body-text">
+    <p>In order to better serve you, all account openings are checked one by one.</p>
+    <br>
+    <p>Simply complete the form below and a memeber of our team will contact you shortly, to simply help you clarify any questions you may have, or if you wish to open an account directly.</p>
+  </div>
+  <div *ngIf="showWarning" class="deadline">
+    <p class="body-warning">TOO LATE (since May 31, 2021) to join us.
+    <br>
+    <br>
+    Orders are currently suspended indefinitely.
+    <br>
+    <br>
+    Please enter your details below to be notified when we reopen 😊</p>
+  </div>
+  <form id="subForm" [formGroup]="subscriptionForm">
+    <label class="subForm-label">First Name<span class="subform-required">*</span></label>
+    <input type="text" formControlName="firstName" placeholder="">
+    <label class="subForm-label">Second Name<span class="subform-required">*</span></label>
+    <input type="text" formControlName="lastName" placeholder="">
+    <label class="subForm-label">Email<span class="subform-required">*</span></label>
+    <input type="text" formControlName="email" placeholder="">
+    <label class="subForm-label">Phone Number<span class="subform-required">*</span></label>
+    <input type="number" formControlName="phoneNumber" placeholder="">
+    <label class="subForm-label">Message<span class="subform-required">*</span></label>
+    <textarea id="story" name="story" rows="4" placeholder="Tell us more about your expectations"></textarea>
+    <label class="subForm-label">Prefered Language</label>
+    <select formControlName="preferedLanguage" name="language">
+      <option value="australia">English</option>
+      <option value="canada">French</option>
+    </select>
+    <label class="subForm-label">Promo Code</label>
+    <input type="text" formControlName="promocode" placeholder="">
+    <div class="submit">
+      <button type="submit">Submit</button></div>
+  </form>
+</div>
+<!-- FOOTER -->
+<div class="footer">
+  <div class="triangle"></div>
+  <p class="footer-title">join 5,000+ fellow summit miners</p>
+  <div class="circle-image">
+    <img src="../../../../assets/img/discord.png"/>
+  </div>
+  <h1>Join us on discord</h1>
+  <p class="footer-text">Join us on Discord and get <span class="bold-text">expert cryptocurrencies tips</span> straight to you.
+    <br>
+    <br>
+    Go <span class="bold-text">behind the scenes</span> of Summit Mining (photos, videos, interviews, etc.)
+    <br>
+    <br>
+    Become an even more profitable cryptocurrency miner.
+  </p>
+  <ng-container>
+    <div class="group-container">
+      <div *ngFor="let group of groupsData" class="group-card">
+        <div class="group-image">
+          <img src={{group.imgSrc}}/>
+        </div>
+        <p class="group-title">Join our {{group.groupName}} Discord group</p>
+        <p *ngIf="group.detail" class="group-detail">{{group.detail}}</p>
+      </div>
+    </div>
+  </ng-container>
 </div>
