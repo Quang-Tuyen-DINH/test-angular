@@ -15,7 +15,7 @@
     <p>Simply complete the form below and a memeber of our team will contact you shortly, to simply help you clarify any questions you may have, or if you wish to open an account directly.</p>
   </div>
   <div *ngIf="showWarning" class="deadline">
-    <p class="body-warning">TOO LATE (since May 31, 2021) to join us.
+    <p class="body-warning">{{warningText}} TOO LATE (since May 31, 2021) to join us.
     <br>
     <br>
     Orders are currently suspended indefinitely.
@@ -42,7 +42,8 @@
     <label class="subForm-label">Promo Code</label>
     <input type="text" formControlName="promocode" placeholder="">
     <div class="submit">
-      <button type="submit">Submit</button></div>
+      <button type="submit" (click)="storeInfos()">Submit</button>
+    </div>
   </form>
 </div>
 <!-- FOOTER -->
